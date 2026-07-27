@@ -35,7 +35,7 @@ export const validateVideoUpdateDto = (
     } else if (data.author.length > 20) {
         errors.push({
             field: 'author',
-            message: 'Author maximum length is 20',
+            message: 'Any String',
         });
     }
 
@@ -87,10 +87,13 @@ export const validateVideoUpdateDto = (
     }
 
 
-    if (isNaN(Date.parse(data.publicationDate))) {
+    if (
+        typeof data.publicationDate !== 'string' ||
+        isNaN(Date.parse(data.publicationDate))
+    ) {
         errors.push({
             field: 'publicationDate',
-            message: 'Invalid publicationDate',
+            message: 'Any String',
         });
     }
 
