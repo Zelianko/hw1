@@ -6,14 +6,16 @@ export const validateVideoUpdateDto = (
 ) => {
     const errors = [];
 
-    if (!data.title || data.title.trim().length === 0) {
+    if (
+        !data.title ||
+        typeof data.title !== 'string' ||
+        data.title.trim().length === 0
+    ) {
         errors.push({
             field: 'title',
-            message: 'Title is required',
+            message: 'Any String',
         });
-    }
-
-    if (data.title.length > 40) {
+    } else if (data.title.length > 40) {
         errors.push({
             field: 'title',
             message: 'Title maximum length is 40',
@@ -21,14 +23,16 @@ export const validateVideoUpdateDto = (
     }
 
 
-    if (!data.author || data.author.trim().length === 0) {
+    if (
+        !data.author ||
+        typeof data.author !== 'string' ||
+        data.author.trim().length === 0
+    ) {
         errors.push({
             field: 'author',
-            message: 'Author is required',
+            message: 'Invalid author',
         });
-    }
-
-    if (data.author.length > 20) {
+    } else if (data.author.length > 20) {
         errors.push({
             field: 'author',
             message: 'Author maximum length is 20',

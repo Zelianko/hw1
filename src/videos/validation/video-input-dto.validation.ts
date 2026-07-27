@@ -14,7 +14,7 @@ export const validateVideoInputDto = (
         typeof data.title !== 'string' ||
         data.title.trim().length > 40
     )
-        errors.push({field: 'title', message: 'Invalid title' });
+        errors.push({field: 'title', message: 'Any String' });
 
     if (
         !data.author ||
